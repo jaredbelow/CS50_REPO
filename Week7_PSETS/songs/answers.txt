@@ -1,0 +1,6 @@
+1. I would characterize the listener's audio aura off of a few factors. I would look into their danceability, energy and valance averages per supposed on what spotify does. However, I would also look into their duration_ms.
+I would take their duration_ms into account to see if they like longer songs & therefore like to spend more time being upbeat, or calm, or if they prefer shorter songs which factors into how they listen to their songs.
+
+2. I would likely improve this initial idea by also taking in, and querying for the listener's most popular genre in their top 100. This would take into account what style of music they prefer & further narrow down the results
+on their audio aura to later allow us to suggest more recommended music to the user. Also at this point from my initial idea in question 1, I would have the duration_ms idea be more of a loose factor into the audio aura decision.
+Basically suggesting some songs of the average length they enjoy, but also dropping a few songs of longer, or shorter length to see if they click on those as well.

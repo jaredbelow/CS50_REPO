@@ -1,0 +1,11 @@
+sort1 uses: Bubble
+
+How do you know?: Sort1 has a lower sorted text file time compared to it's reversed & random times. Random & reversed took upwards of 5 seconds to complete whereas sorted took at most .500 seconds.
+
+sort2 uses: Merge
+
+How do you know?: Sort2 throughout all files had a very consistent timing pace no matter file size. It would start in the .0X range up to .X at the highest file size.
+
+sort3 uses: Selection
+
+How do you know?: Sort3 was mostly ruled out as selection after sort1 identified as bubble. However, in actual terms the times reflected O(n2) and omega(n2).

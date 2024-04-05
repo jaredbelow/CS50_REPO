@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script>
+            // Wait for DOMContentLoaded
+            document.addEventListener('DOMContentLoaded', () => {
+
+                // Add click event listener to all trivia buttons
+                document.querySelectorAll('.triviaA').forEach((btn) => {
+                    btn.addEventListener('click', (e) => {
+
+                        // Variable for validation
+                        let validation = document.querySelector('.triviaV')
+
+                        // Get innerHTML of clicked button
+                        let userAnswer = e.target.innerHTML
+
+                        // Loop through all buttons & remove previously set classes
+                        document.querySelectorAll('.triviaA').forEach((btn) => {
+                            if (btn.classList.contains('tIncorrect')) {
+                                btn.classList.remove('tIncorrect')
+                            }
+
+                            if (btn.classList.contains('tCorrect')) {
+                                btn.classList.remove('tCorrect')
+                            }
+                        });
+
+                        // Hide trivia validation
+                        if (!validation.classList.contains('hidden')) {
+                            validation.classList.add('hidden');
+                        }
+
+                        // Check for correct answer
+                        if (userAnswer === 'Wally West') {
+                            e.target.classList.add('tCorrect');
+                            validation.style.color = 'green';
+                            validation.innerHTML = 'Correct!';
+                            validation.classList.remove('hidden');
+                        } else {
+                            e.target.classList.add('tIncorrect');
+                            validation.style.color = 'red';
+                            validation.innerHTML = 'Incorrect!';
+                            validation.classList.remove('hidden');
+                        }
+                    });
+                });
+
+                // Add Submit Listener to free response button
+                document.getElementById('triviaLAB').addEventListener('click', (e) => {
+
+                    // Prevent default behavior of refresh
+                    e.preventDefault();
+
+                    // Placeholder for input field
+                    let answerField = document.querySelector('.triviaLA');
+
+                    // Placeholder for validation text
+                    let validation = document.querySelector('.triviaLV');
+
+                    // Remove any previous validation styling
+                    if (answerField.classList.contains('tCorrect')) {
+                        answerField.classList.remove('tCorrect');
+                        validation.classList.add('hidden');
+                    }
+
+                    if (answerField.classList.contains('tIncorrect')) {
+                        answerField.classList.remove('tIncorrect');
+                        validation.classList.add('hidden');
+                    }
+
+                    // Get value of input box
+                    let userAnswer = answerField.value;
+
+                    // Remove any punctuation from answer
+                    // RegExp provided by
+                    // https://stackoverflow.com/questions/4328500/how-can-i-strip-all-punctuation-from-a-string-in-javascript-using-regex
+                    userAnswer = userAnswer.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
+
+                    // Create regex of answer for validation
+                    const answer = new RegExp('run barry run', 'i');
+
+                    // Validate user answer
+                    if (answer.test(userAnswer)) {
+                        answerField.classList.add('tCorrect');
+                        validation.style.color = 'green';
+                        validation.innerHTML = 'Correct!'
+                        validation.classList.remove('hidden');
+                    } else {
+                        answerField.classList.add('tIncorrect');
+                        validation.style.color = 'red';
+                        validation.innerHTML = 'Incorrect!';
+                        validation.classList.remove('hidden');
+                    }
+                });
+
+            });
+        </script>
+    </head>
+
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                <h3 class="triviaQ">Which Flash is the best user of the speedforce from The Flash universe?</h3>
+                <h4 class="triviaV hidden"></h4>
+                <button class="triviaA">Barry Allen</button>
+                <button class="triviaA">Wally West</button>
+                <button class="triviaA">Bart Allen</button>
+                <button class="triviaA">Jay Garrick</button>
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <h3 class="triviaQ">In the CW Flash TV show, what common phrase did many of the cast use to motivate Barry to win?</h3>
+                <h4 class="triviaLV hidden"></h4>
+                <input class="triviaLA" type="text" name="triviaLA" placeholder="Place your answer here..." maxlength="20" />
+                <button id="triviaLAB">Submit</button>
+            </div>
+        </div>
+    </body>
+
+</html>
